@@ -248,6 +248,9 @@ h4 span {
     margin-right: 0px;
     width: 90%;
   }
+  #userDetails-card h1 {
+    font-size: 1.4rem;
+  }
   #userDetails-card .details-below {
     width: 95%;
     margin-bottom: 20px;
