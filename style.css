@@ -14,6 +14,10 @@ body::-webkit-scrollbar-thumb {
   border-radius: 25px;
 }
 
+main {
+  margin-bottom: 4rem;
+}
+
 .grid-userinfo {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -34,8 +38,8 @@ body::-webkit-scrollbar-thumb {
   -webkit-box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 60px 4px;
           box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 60px 4px;
   width: 40%;
-  height: 440px;
-  overflow: scroll;
+  height: auto;
+  overflow: auto;
   margin-right: 50px;
 }
 
@@ -105,14 +109,43 @@ body::-webkit-scrollbar-thumb {
 #userDetails-card .details-below {
   background-color: white;
   border: 1px solid transparent;
-  width: 85%;
+  width: 95%;
   border-radius: 25px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 60px 1px;
           box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 60px 1px;
   height: auto;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-size: 1.1rem;
+  padding-bottom: 20px;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: "left right";
+}
+
+.grid-l {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: left;
+}
+
+.grid-r {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: right;
+}
+
+.grid-email {
+  overflow-y: auto;
+}
+
+.grid-email::-webkit-scrollbar {
+  display: none;
 }
 
 .user-tbl {
@@ -203,6 +236,8 @@ body::-webkit-scrollbar-thumb {
 
 h4 {
   margin-left: 2rem;
+  margin-top: 1rem;
+  margin-bottom: .5px;
   color: #4285F4;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -223,14 +258,12 @@ h4 span {
 
 @media screen and (max-width: 992px) {
   .usertbl-section {
+    margin-right: 0px;
     width: 85%;
   }
   #userDetails-card {
     margin-top: 100px;
     width: 85%;
-  }
-  .usertbl-section {
-    margin-right: 0px;
   }
 }
 
@@ -255,6 +288,11 @@ h4 span {
     width: 95%;
     margin-bottom: 20px;
     font-size: 1rem;
+  }
+  .grid {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: "left" "right";
   }
   header h1 {
     font-size: 1.5rem;

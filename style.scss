@@ -22,6 +22,11 @@ body::-webkit-scrollbar-thumb {
     border-radius: 25px;
 }
 
+main{
+    margin-bottom: 4rem;
+}
+
+
 .grid-userinfo{
     display: flex;
     flex-wrap: wrap;
@@ -39,8 +44,8 @@ body::-webkit-scrollbar-thumb {
     // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 60px 4px;
     width:40%;
-    height: 440px;
-    overflow:scroll;
+    height: auto;
+    overflow:auto;
     margin-right: 50px;
       
 }
@@ -100,14 +105,35 @@ body::-webkit-scrollbar-thumb {
     .details-below{
                 background-color: white;
                 border: 1px solid transparent;
-                width: 85%;
+                width: 95%;
                 border-radius: 25px;
                 box-shadow: rgba(0, 0, 0, 0.20) 0px 2px 60px 1px;
-                height: auto;
+                height:auto;
                 margin-top: 1rem;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 font-size: 1.1rem;
+                padding-bottom: 20px;
     }
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr); 
+    grid-template-areas: "left right"; 
+}
+
+.grid-l{
+    grid-area:left;
+}
+.grid-r{
+    grid-area:right;
+}
+
+.grid-email{
+   overflow-y: auto;
+   &::-webkit-scrollbar{
+       display: none;
+   }
 }
 
 .user-tbl{
@@ -187,6 +213,8 @@ body::-webkit-scrollbar-thumb {
 
 h4{
     margin-left: 2rem;
+    margin-top:1rem;
+    margin-bottom: .5px;
     color: $googleblue;
     display: flex;
     flex-direction: column;
@@ -209,14 +237,14 @@ h4{
 
 @media screen and (max-width:992px) {
     .usertbl-section{
+        margin-right: 0px;
         width: 85%;
+        // height: 500px;
     }
     #userDetails-card{
         margin-top: 100px;
         width: 85%;
-    }
-    .usertbl-section{
-        margin-right: 0px;
+        
     }
 }
 
@@ -242,6 +270,11 @@ h4{
             font-size: 1rem;
         }
     }
+    .grid{
+        grid-template-columns:1fr;
+        grid-template-areas:"left" "right";
+    }
+    
     header{
         h1{
             font-size: 1.5rem;
