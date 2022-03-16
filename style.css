@@ -164,6 +164,14 @@ main {
   padding: 8px;
 }
 
+.user-tbl td:last-child {
+  text-align: center;
+}
+
+.user-tbl td:last-child:hover {
+  color: red;
+}
+
 .user-tbl th {
   border: 1px solid #ddd;
   padding: 8px;

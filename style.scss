@@ -6,6 +6,8 @@ $googlegreen:#0F9D58;
 $grey-bg:#ddd;
 $faint-grey:#f2f2f2;
 
+// $googleblue:$googleyello;
+
 
 body{
     margin: 0 auto;
@@ -136,6 +138,11 @@ main{
    }
 }
 
+
+// .grid:nth-child(even){
+//     background-color: $googlegreen;
+// }
+
 .user-tbl{
 
     table-layout: auto;
@@ -146,7 +153,17 @@ main{
    
     td{
         border: 1px solid $grey-bg;
-        padding: 8px;       
+        padding: 8px;
+        
+        &:last-child{
+            text-align: center;
+
+            &:hover{
+                color: red;
+            }
+        }
+
+        
     }
 
     th{

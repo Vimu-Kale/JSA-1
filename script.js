@@ -1,3 +1,5 @@
+
+
 let loader = document.getElementsByClassName("loader")[0];
 let detailsBelow = document.getElementsByClassName("details-below")[0];
 
@@ -13,11 +15,11 @@ async function getUsers() {
 
 getUsers()
     .then(users => {
-        // console.log(users);
+        console.log(users);
         generateUserTable(users);
     }).catch((e) => {
         alert("Problem Fetching User Data ! :( ");
-        // console.log(e);
+        console.log(e);
     })
 
 
@@ -25,9 +27,9 @@ generateUserTable = (users) => {
 
     let divContainer = document.getElementById("users-tbl");
 
-    let col = ["first_name", "last_name", "username", "title", "country"];
+    let col = ["first_name", "last_name", "username", "title", "country", "delete"];
 
-    let tblheader = ["First Name", "Last Name", "Userame", "Title", "Country"];
+    let tblheader = ["First Name", "Last Name", "Userame", "Title", "Country", "Delete"];
 
     //DYNAMIC TABLE
     let table = document.createElement("table");
@@ -52,11 +54,18 @@ generateUserTable = (users) => {
 
         for (let j = 0; j < col.length; j++) {
             let tabCell = tr.insertCell(-1);
+
+            // var img = document.createElement('img');
+            // img.src = "";
+
             if (col[j] === "title") {
                 tabCell.innerHTML = users[i].employment.title;
             }
             else if (col[j] === "country") {
                 tabCell.innerHTML = users[i].address.country;
+            }
+            else if (col[j] === "delete") {
+                tabCell.innerHTML = `<i class="fa fa-trash" aria-hidden="true" value=${users[i].id}></i>`;
             }
             else {
                 tabCell.innerHTML = users[i][col[j]];
@@ -78,6 +87,20 @@ generateUserTable = (users) => {
     //SET FIRST USER INFO ON RIGHT PANEL/CARD
     createDtailsCard(users[0].id, users);
 
+    // const itag = document.getElementsByTagName("i");
+    // console.log(itag);
+
+    // for (let j = 1; j <= itag.length; j++) {
+    //     itag[j].addEventListener('click', function (e) {
+    //         const uid = e.target.attributes[2].value;
+    //         console.log(uid);
+    //         deleteUser(uid, users);
+    //     });
+    // }
+
+
+
+
     //GET ROWS IN A TABLE
     const a = document.getElementsByTagName("tr");
     // console.log(a);
@@ -86,10 +109,23 @@ generateUserTable = (users) => {
     for (let i = 1; i <= users.length; i++) {
         a[i].addEventListener('click', function (e) {
             // const id = e.path[1].attributes[0].nodeValue;
+
+            if (e.target.localName === "i") {
+                const uid = e.target.attributes[2].nodeValue;
+                deleteUser(uid, users);
+            }
+
+
             const id = e.target.parentElement.attributes[0].nodeValue;
+            // console.log(id);
+
+
             createDtailsCard(id, users);
         });
     }
+
+
+
 
 
 }
@@ -102,6 +138,10 @@ const createDtailsCard = (id, users) => {
         // console.log(users[i].id, id);
         if (users[i].id == id) {
             // console.log(users[i]);
+
+            let dobc = new Date(users[i].date_of_birth);
+            let ageinmili = new Date() - dobc;
+            const age = (Math.floor(ageinmili / 1000 / 60 / 60 / 24 / 365));
 
             //SETTING AVATAR
             let avatar = document.getElementById("avatar");
@@ -138,7 +178,7 @@ const createDtailsCard = (id, users) => {
             mf.innerHTML = users[i].gender;
             phno.innerHTML = users[i].phone_number;
             sin.innerHTML = users[i].social_insurance_number;
-            dob.innerHTML = users[i].date_of_birth;
+            dob.innerHTML = `${users[i].date_of_birth} (${age} years old)`;
             title.innerHTML = users[i].employment.title;
             skill.innerHTML = users[i].employment.key_skill;
             addr.innerHTML = `${users[i].address.city}, ${users[i].address.state}, ${users[i].address.country}`;
@@ -189,3 +229,22 @@ const greetUser = (UserName) => {
 // ARRAY OPERATION [ADD,UPDATE,DELETE]
 
 
+const deleteUser = (id, users) => {
+    let text = `Are you sure you want to delete this user?`;
+    if (confirm(text) == true) {
+
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].id == id) {
+                alert(users[i].first_name + " Details Deleted");
+                users.splice(i, 1);
+                generateUserTable(users);
+
+            }
+        }
+
+
+
+    } else {
+        alert("Operation Cancelled!");
+    }
+}
