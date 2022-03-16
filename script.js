@@ -235,7 +235,7 @@ const deleteUser = (id, users) => {
 
         for (let i = 0; i < users.length; i++) {
             if (users[i].id == id) {
-                alert(users[i].first_name + " Details Deleted");
+                alert(users[i].first_name + "'s Details Deleted");
                 users.splice(i, 1);
                 generateUserTable(users);
 
@@ -248,3 +248,4 @@ const deleteUser = (id, users) => {
         alert("Operation Cancelled!");
     }
 }
+

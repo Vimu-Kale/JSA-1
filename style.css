@@ -104,6 +104,14 @@ main {
   height: 60px;
   border-radius: 50%;
   background-color: white;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+#userDetails-card #avatar:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 #userDetails-card .details-below {
@@ -162,6 +170,8 @@ main {
 .user-tbl td {
   border: 1px solid #ddd;
   padding: 8px;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 .user-tbl td:last-child {
@@ -170,6 +180,8 @@ main {
 
 .user-tbl td:last-child:hover {
   color: red;
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
 }
 
 .user-tbl th {
